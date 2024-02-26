@@ -87,13 +87,14 @@ const login = async (req, res, next) => {
     }
 
     // Create and assign a token
-    const token = jwt.sign({ _id: userDetails._id }, process.env.JWT_SECRET);
-    res.cookie("token", token, { httpOnly: true });
-
+    const token = jwt.sign({ userId: userDetails._id }, process.env.JWT_SECRET);
+    res.cookie("token", token ,{httpOnly: true});
+    
+    console.log(token);
     // You might want to exclude sending hashed password in the response
     //const { password: _, ...userData } = userDetails.toObject();
 
-    res.status(200).json({ token, user: userDetails.username });
+    return  res.status(200).json({ token, user: userDetails.username });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
