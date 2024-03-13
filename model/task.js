@@ -10,9 +10,15 @@ const SubTaskSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  taskId: {
+  refTaskId: {
     type: mongoose.Types.ObjectId,
-
+    
+    required:false,
+  },
+  refcardId: {
+    type: mongoose.Types.ObjectId,
+    ref:"Task",
+    required:false,
   },
 });
 
@@ -24,7 +30,7 @@ const TaskSchema = new mongoose.Schema({
   },
   priority: {
     type: String,
-    enum: ["low", "medium", "high"],
+    enum: ["low", "medium", "heigh"],
     default: "low",
     required: true,
   },
@@ -36,6 +42,7 @@ const TaskSchema = new mongoose.Schema({
 
   dueDate: {
     type: Date,
+
   },
   createDate: {
     type: Date,

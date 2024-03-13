@@ -5,6 +5,7 @@ const cors =require("cors");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth");
 const taskRoutes = require("./routes/task");
+const analyticsRoutes = require("./routes/analytics");
 //create a server
 const app = express();
 
@@ -22,6 +23,7 @@ mongoose
 //routes
 app.use("/api/v1/auth" ,authRoutes);
 app.use("/api/v1/task" ,taskRoutes);
+app.use("/api/v1/analytics" ,analyticsRoutes);
 
 app.get("/health", (req, res) => {
   res.json({
